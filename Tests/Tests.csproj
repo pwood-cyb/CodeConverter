@@ -40,5 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeConv\CodeConv.csproj" />
+    <ProjectReference Include="..\VsCodeExtension.Worker\VsCodeExtension.Worker.csproj" />
   </ItemGroup>
 </Project>
