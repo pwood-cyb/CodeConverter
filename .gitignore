@@ -290,3 +290,7 @@ __pycache__/
 /web/.vite/
 /web/dist/
 .claude/settings.local.json
+VsCodeExtension/out/
+VsCodeExtension/.vscode-test/
+VsCodeExtension/worker/
+*.vsix

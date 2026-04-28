@@ -5,6 +5,8 @@
 Convert code from VB.NET to C# (and vice versa) using Roslyn - all free and open source:
 * [Visual Studio extension](https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.CodeConverter)
   * To install close VS and double-click the downloadeded .vsix file
+* Experimental VS Code extension in [VsCodeExtension](VsCodeExtension/README.md)
+  * Uses the same local conversion engine through a packaged .NET worker and currently focuses on desktop VS Code file, document, selection, and paste workflows
 * [Online snippet converter](https://icsharpcode.github.io/CodeConverter/)
 * Command line `dotnet tool install ICSharpCode.CodeConverter.codeconv --global` (still requires VS2026 18.0+ installed)
 * [Nuget library](https://www.nuget.org/packages/ICSharpCode.CodeConverter/) (this underpins all other free converters you'll find online)
@@ -57,6 +59,11 @@ Visual Basic .NET is slowly dying. It has support for *some* project types from 
   * You will need Node (LTS)
 5. To run the Visual Studio extension, set Vsix as the startup project
    * A new instance of Visual Studio will open with the extension installed
+6. To run the VS Code extension, open `VsCodeExtension/`
+   * Run `npm install`
+   * Run `npm test` for extension-host coverage
+   * Run `npm run package:vsix` to build the VS Code package
+   * The packaged extension bundles a local worker executable on Windows, so end users do not need `dotnet` on their `PATH`
 
 ##  History
 

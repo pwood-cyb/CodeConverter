@@ -1,0 +1,187 @@
+{
+    "name": "codeconverter-vscode",
+    "displayName": "Code Converter",
+    "description": "VS Code extension for converting VB.NET and C# using the CodeConverter engine",
+    "version": "0.0.2",
+    "publisher": "icsharpcode",
+    "private": true,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/icsharpcode/CodeConverter.git"
+    },
+    "engines": {
+        "vscode": "^1.99.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codeconverter.convertSelection.vbToCs",
+                "title": "Convert Selection to C#",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.convertSelection.csToVb",
+                "title": "Convert Selection to VB.NET",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.convertDocument.vbToCs",
+                "title": "Convert Document to C#",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.convertDocument.csToVb",
+                "title": "Convert Document to VB.NET",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.convertExplorerItems.vbToCs",
+                "title": "Convert Files to C#",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.convertExplorerItems.csToVb",
+                "title": "Convert Files to VB.NET",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.pasteAsCs",
+                "title": "Paste as C#",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.pasteAsVb",
+                "title": "Paste as VB.NET",
+                "category": "Code Converter"
+            },
+            {
+                "command": "codeconverter.cancelConversion",
+                "title": "Cancel Conversion",
+                "category": "Code Converter"
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "codeconverter.convertSelection.vbToCs"
+                },
+                {
+                    "command": "codeconverter.convertSelection.csToVb"
+                },
+                {
+                    "command": "codeconverter.convertDocument.vbToCs"
+                },
+                {
+                    "command": "codeconverter.convertDocument.csToVb"
+                },
+                {
+                    "command": "codeconverter.convertExplorerItems.vbToCs"
+                },
+                {
+                    "command": "codeconverter.convertExplorerItems.csToVb"
+                },
+                {
+                    "command": "codeconverter.pasteAsCs"
+                },
+                {
+                    "command": "codeconverter.pasteAsVb"
+                },
+                {
+                    "command": "codeconverter.cancelConversion"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "codeconverter.convertSelection.vbToCs",
+                    "when": "editorLangId == vb && editorHasSelection"
+                },
+                {
+                    "command": "codeconverter.convertSelection.csToVb",
+                    "when": "editorLangId == csharp && editorHasSelection"
+                },
+                {
+                    "command": "codeconverter.convertDocument.vbToCs",
+                    "when": "editorLangId == vb"
+                },
+                {
+                    "command": "codeconverter.convertDocument.csToVb",
+                    "when": "editorLangId == csharp"
+                },
+                {
+                    "command": "codeconverter.pasteAsCs",
+                    "when": "editorTextFocus"
+                },
+                {
+                    "command": "codeconverter.pasteAsVb",
+                    "when": "editorTextFocus"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "codeconverter.convertExplorerItems.vbToCs",
+                    "when": "resourceExtname == .vb"
+                },
+                {
+                    "command": "codeconverter.convertExplorerItems.csToVb",
+                    "when": "resourceExtname == .cs"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "Code Converter",
+            "properties": {
+                "codeConverter.copySingleResultToClipboard": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Copy the converted result to the clipboard for single-document conversions."
+                },
+                "codeConverter.autoApproveOverwrite": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip overwrite confirmation when converting file or project selections."
+                },
+                "codeConverter.createBackups": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Create backup files before overwriting converted outputs."
+                },
+                "codeConverter.formattingTimeoutMinutes": {
+                    "type": "number",
+                    "default": 15,
+                    "minimum": 1,
+                    "description": "Maximum time to wait for long-running formatting or cleanup work."
+                },
+                "codeConverter.bypassAssemblyLoadingErrors": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Allow compatibility workarounds for assembly loading issues when explicitly enabled."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "tsc -p .",
+        "watch": "tsc -w -p .",
+        "pretest": "npm run compile",
+        "test": "vscode-test",
+        "test:ci": "vscode-test",
+        "validate:package": "node ./scripts/validatePackage.mjs",
+        "package": "npm run compile && node ./scripts/packageVsix.mjs",
+        "package:vsix": "npm run compile && node ./scripts/packageVsix.mjs"
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.10",
+        "@types/node": "^22.19.17",
+        "@types/vscode": "^1.99.1",
+        "@vscode/test-cli": "^0.0.12",
+        "@vscode/test-electron": "^2.5.2",
+        "mocha": "^11.7.5",
+        "typescript": "^5.9.3",
+        "@vscode/vsce": "^3.9.1"
+    }
+}
